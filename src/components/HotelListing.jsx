@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Toast from './common/Toast';
+import config from '../config';
 
 function HotelListing() {
   const [rooms, setRooms] = useState([]);
@@ -55,7 +56,7 @@ function HotelListing() {
   const fetchRooms = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get('http://localhost:5000/api/rooms');
+      const { data } = await axios.get(`${config.API_URL}/api/rooms`);
       setRooms(data);
     } catch (error) {
       console.error('Error fetching rooms:', error);
